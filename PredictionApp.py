@@ -12,7 +12,7 @@ model = pickle.load(open('firstbasicmodel.pkl','rb'))
 features = pickle.load(open('features.pkl','rb'))
 
 # Caching the model for faster loading
-@st.cache
+# @st.cache
 
 # Application Body
 st.title('Salary Prediction')
