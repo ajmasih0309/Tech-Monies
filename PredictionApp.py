@@ -9,7 +9,7 @@ from sklearn.linear_model import LinearRegression
 model = pickle.load(open('firstbasicmodel.pkl','rb'))
 
 # Loading features
-features = pickle.load(open('features.pkl','rb'))
+feature_dict = pickle.load(open('features.pkl','rb'))
 
 # Caching the model for faster loading
 # @st.cache
