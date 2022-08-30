@@ -1,5 +1,5 @@
 # imports
-import pickle
+import pickle5 as pickle
 import streamlit as st
 import pandas as pd
 from sklearn.linear_model import LinearRegression
