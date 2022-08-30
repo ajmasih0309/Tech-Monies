@@ -33,10 +33,10 @@ if st.button('Predict Salary'):
     feature_dict['title scraped for'][jobTitle],
     feature_dict['Country'][country],
     feature_dict['Position'][position],
-    yearExp
+    yearExp,
     feature_dict['contract_type'][contract],
     feature_dict['eligibility'][eligibility]
     ]
-  df = pd.DataFrame(dataset, columns=[list(features.keys())]
+  df = pd.DataFrame(dataset, columns=[list(features.keys())])
   salary = model.predict(df)
   st.success(f'The predicted ranges from ${salary[0]:.0f} to ${salary[1]:.0f} USD')
