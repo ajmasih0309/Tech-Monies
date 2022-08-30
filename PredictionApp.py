@@ -16,7 +16,7 @@ feature_dict = pickle.load(open('features.pkl','rb'))
 
 # Application Body
 st.title('Salary Prediction')
-st.image("""https://cdn.pixabay.com/photo/2018/10/03/11/31/wallet-3721156_1280.png""")
+st.image('https://cdn.pixabay.com/photo/2018/10/03/11/31/wallet-3721156_1280.png', width=200)
 st.header('Provide your inputs for predicting Salry:')
 
 # selections
@@ -37,6 +37,6 @@ if st.button('Predict Salary'):
     feature_dict['contract_type'][contract],
     feature_dict['eligibility'][eligibility]
     ]
-  df = pd.DataFrame(dataset, columns=[list(feature_dict.keys())])
+  df = pd.DataFrame(map(int, dataset), columns=[list(feature_dict.keys())])
   salary = model.predict(df)
   st.success(f'The predicted ranges from ${salary[0]:.0f} to ${salary[1]:.0f} USD')
