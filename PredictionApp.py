@@ -38,5 +38,6 @@ if st.button('Predict Salary'):
     feature_dict['eligibility'][eligibility]
     ]
   df = pd.DataFrame(map(int, dataset), columns=[list(feature_dict.keys())])
-  salary = model.predict(df)
-  st.success(f'The predicted ranges from ${salary[0]:.0f} to ${salary[1]:.0f} USD')
+  st.write(df)
+  #salary = model.predict(df)
+  #st.success(f'The predicted ranges from ${salary[0]:.0f} to ${salary[1]:.0f} USD')
