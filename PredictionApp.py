@@ -16,7 +16,7 @@ features = pickle.load(open('features.pkl','rb'))
 
 # Application Body
 st.title('Salary Prediction')
-st.image("""https://github.com/lifepopkay/Tech-Monies/blob/206b25db1766925f3717142bd0f5091b1981240f/jp-valery-lVFoIi3SJq8-unsplash.jpg""")
+st.image("""https://github.com/ajmasih0309/Tech-Monies/blob/f28b795a786ca2cc61b37d9d5f9559325acc0792/jp-valery-lVFoIi3SJq8-unsplash.jpg""")
 st.header('Provide your inputs for predicting Salry:')
 
 # selections
