@@ -21,13 +21,13 @@ st.header('Provide your inputs for predicting Salary:')
 
 # selections
 cols = list(feature_dict.keys())
-jobTitle = st.selectbox('Select Job Title:', list(feature_dict[cols[0]].keys()))
-country = st.selectbox('Select Country:', list(feature_dict[cols[1]].keys()))
-position = st.selectbox('Select Seniority:', list(feature_dict[cols[2]].keys()))
+jobTitle = st.selectbox('Select Job Title', list(feature_dict[cols[0]].keys()))
+country = st.selectbox('Select Country', list(feature_dict[cols[1]].keys()))
+position = st.selectbox('Select Seniority', list(feature_dict[cols[2]].keys()))
 yearExp = st.number_input('Enter Total Experience (Years):', min_value=1, max_value=25, value=1)
 contract = st.selectbox('Select Job Type', list(feature_dict[cols[4]].keys()))
-eligibility = st.selectbox('Select Seniority:', list(feature_dict[cols[5]].keys()))
-skills = st.multiselect('Select one or more skills:', cols[6:])
+eligibility = st.selectbox('Select highest education', list(feature_dict[cols[5]].keys()))
+skills = st.multiselect('Select one or more skills', cols[6:])
 
 
 # Prediction & output
