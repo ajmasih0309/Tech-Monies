@@ -48,7 +48,8 @@ if st.button('Predict Salary'):
   df = pd.DataFrame(dataset)
   salary = model.predict(df.T).flatten().tolist()
   st.success(f'Expected Salary between **\${salary[0]:,.0f}** and **\${salary[1]:,.0f}** annually.')
-
-# User Survey
-st.components.v1.iframe("https://docs.google.com/forms/d/e/1FAIpQLSdUwljNwSdey09TQO38Bq3VF9DwngNjvTNMJDsd2T1abRbXmw/viewform?embedded=true"
+  st.text('Can you help us in improving your prediction')
+  if st.button('Yes, I will'):
+    # User Survey
+    st.components.v1.iframe("https://docs.google.com/forms/d/e/1FAIpQLSdUwljNwSdey09TQO38Bq3VF9DwngNjvTNMJDsd2T1abRbXmw/viewform?embedded=true"
                         , width=640, height=2543, scrolling=False)
