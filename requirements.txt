@@ -2,3 +2,4 @@ pickle5
 streamlit
 pandas
 sklearn
+Forex-python
