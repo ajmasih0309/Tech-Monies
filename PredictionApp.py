@@ -3,13 +3,18 @@ import pickle5 as pickle
 import streamlit as st
 import pandas as pd
 from sklearn.linear_model import LinearRegression
-
+from sklearn.preprocessing import StandardScaler
+from forex_python.converter import CurrencyRates
 
 # Loading model
 model = pickle.load(open('secondmodel.pkl','rb'))
 
 # Loading features
 feature_dict = pickle.load(open('features.pkl','rb'))
+
+# Loading scaler
+scalerX = pickle.load(open('scalerX.pkl','rb'))
+scalerY = pickle.load(open('scalerY.pkl','rb'))
 
 # Caching the model for faster loading
 # @st.cache
@@ -29,6 +34,12 @@ contract = st.selectbox('Select Job Type', list(feature_dict[cols[4]].keys()))
 eligibility = st.selectbox('Select highest education', list(feature_dict[cols[5]].keys()))
 skills = st.multiselect('Select one or more skills', cols[6:])
 
+# Salary conversion
+country_index = feature_dict[cols[1]][country]
+currency_code = ['INR', 'USD', 'EUR', 'USD'] # 'NGN'
+currency_sign = ['₹', '\$', '￡', '\$'] #  '₦'
+cc = currency_code[country_index]
+cs = currency_sign[country_index]
 
 # Prediction & output
 if st.button('Predict Salary'):
@@ -46,8 +57,14 @@ if st.button('Predict Salary'):
     else:
       dataset.append(0)
   df = pd.DataFrame(dataset)
-  salary = model.predict(df.T).flatten().tolist()
-  st.success(f'Expected Salary between **\${salary[0]:,.0f}** and **\${salary[1]:,.0f}** annually.')
+  df = df.T.values
+  scaledDF = scalerX.transform(df)
+  prediction = model.predict(scaledDF)
+  prediction = scalerY.inverse_transform(prediction)
+  salary = prediction.flatten().tolist()
+  min_Salary = CurrencyRates().convert('USD', cc, salary[0])
+  max_Salary = CurrencyRates().convert('USD', cc, salary[1])
+  st.success(f'Expected Salary between **{cs}{salary[0]:,.0f}** and **{cs}{salary[1]:,.0f}** annually.')
   
 st.text('Can you help us improve in salary prediction?')
 if st.button('Yes, I will'):
