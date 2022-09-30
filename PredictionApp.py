@@ -4,7 +4,8 @@ import streamlit as st
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import StandardScaler
-from forex_python.converter import CurrencyRates
+# from forex_python.converter import CurrencyRates
+import requests
 from st_on_hover_tabs import on_hover_tabs
 st.set_page_config(layout="wide")
 
@@ -17,6 +18,29 @@ feature_dict = pickle.load(open('features.pkl','rb'))
 # Loading scaler
 scalerX = pickle.load(open('scalerX.pkl','rb'))
 scalerY = pickle.load(open('scalerY.pkl','rb'))
+
+# Exchange Rate
+
+
+# Currency Convertor
+class RealTimeCurrencyConverter():
+  def __init__(self,url):
+    self.data= requests.get(url).json()
+    self.currencies = self.data['rates']
+
+  def convert(self, from_currency, to_currency, amount): 
+    initial_amount = amount 
+    #first convert it into USD if it is not in USD.
+    # because our base currency is USD
+    if from_currency != 'USD' : 
+      amount = amount / self.currencies[from_currency] 
+  
+    # limiting the precision to 4 decimal places 
+    amount = round(amount * self.currencies[to_currency], 4) 
+    return amount
+
+url = 'https://api.exchangerate-api.com/v4/latest/USD'
+converter = RealTimeCurrencyConverter(url)
 
 # loading css
 # st.markdown('<style>' + open('styles.css').read() + '</style>', unsafe_allow_html=True)
@@ -67,8 +91,8 @@ if tabs == 'Salary Prediction':
   
   # Salary conversion
   country_index = feature_dict[cols[1]][country]
-  currency_code = ['INR', 'USD', 'EUR', 'USD'] # 'NGN'
-  currency_sign = ['₹', '\$', '￡', '\$'] #  '₦'
+  currency_code = ['INR', 'NGN', 'EUR', 'USD']
+  currency_sign = ['₹', '₦', '￡', '\$']
   cc = currency_code[country_index]
   cs = currency_sign[country_index]
   
@@ -93,8 +117,8 @@ if tabs == 'Salary Prediction':
     prediction = model.predict(scaledDF)
     prediction = scalerY.inverse_transform(prediction)
     salary = prediction.flatten().tolist()
-    min_Salary = CurrencyRates().convert('USD', cc, salary[0])
-    max_Salary = CurrencyRates().convert('USD', cc, salary[1])
+    min_Salary = converter.convert('USD', cc, salary[0])
+    max_Salary = converter.convert('USD', cc, salary[1])
     st.success(f'Expected Salary between **{cs}{salary[0]:,.0f}** and **{cs}{salary[1]:,.0f}** annually.')
 
 # Survey
