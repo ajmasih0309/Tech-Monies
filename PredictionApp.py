@@ -27,7 +27,7 @@ scalerY = pickle.load(open('scalerY.pkl','rb'))
 
 # sidebar
 with st.sidebar:
-        tabs = on_hover_tabs(tabName=['Home', 'Salary Prediction', 'Feedback', 'Contributors'], 
+        tabs = on_hover_tabs(tabName=['Home', 'Salary Prediction', 'Survey', 'Contributors'], 
                             iconName=['home', 'money', 'dashboard', 'groups'], default_choice=0)
 
 # Application Body
