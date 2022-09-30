@@ -3,3 +3,4 @@ streamlit
 pandas
 sklearn
 Forex-python
+streamlit-on-Hover-tabs
