@@ -71,7 +71,7 @@ if tabs == 'Home':
         """)
   st.subheader('Help Us Improve')
   st.info("""
-        Kindly Participate in survey & help us improve the model for Salary Prediction.
+        Kindly participate in survey & help us improve the model for Salary Prediction.
         """)
 
 # Model
