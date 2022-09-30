@@ -122,7 +122,7 @@ if tabs == 'Salary Prediction':
     st.success(f'Expected Salary between **{cs}{salary[0]:,.0f}** and **{cs}{salary[1]:,.0f}** annually.')
 
 # Survey
-if tabs == 'Feedback':    
+if tabs == 'Survey':    
   st.text('Can you help us improve in salary prediction?')
   if st.button('Yes, I will'):
     # User Survey
