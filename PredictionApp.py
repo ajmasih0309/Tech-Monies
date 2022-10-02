@@ -51,28 +51,10 @@ converter = RealTimeCurrencyConverter(url)
 
 # sidebar
 with st.sidebar:
-        tabs = on_hover_tabs(tabName=['Home', 'Salary Prediction', 'Survey', 'Contributors'], 
-                            iconName=['home', 'money', 'dashboard', 'groups'], default_choice=0)
+        tabs = on_hover_tabs(tabName=['Salary Prediction', 'Survey', 'About'], 
+                            iconName=['money', 'dashboard', 'groups'], default_choice=0)
 
 # Application Body
-# Overview
-if tabs == 'Home':
-  st.title('Salary Prediction')
-  st.subheader('About')
-  st.write("""This is a Salary Prediction Application.
-  It gives you expected salary that can be asked from recruiter/company based on Country, Total Experience, Highest Qualification and few more factors. """)
-  st.warning('NOTE: This Application will only give you a possible salary range. In reality the salary can vary because of external factors which are not considered here.')
-  st.subheader("How To Use The Application")
-  st.write("""
-        1. Input Information by using dropdown list and +/- buttons for experience.
-        2. Once all the Information is entered click on Predict Salary.
-        3. You will be returned the predicted value of Salary.
-        4. If you want to make a new prediction repeat step 1 & 2.
-        """)
-  st.subheader('Help Us Improve')
-  st.info("""
-        Kindly participate in survey & help us improve the model for Salary Prediction.
-        """)
 
 # Model
 if tabs == 'Salary Prediction':
@@ -122,7 +104,7 @@ if tabs == 'Salary Prediction':
     st.success(f'Expected Salary between **{cs}{salary[0]:,.0f}** and **{cs}{salary[1]:,.0f}** annually.')
 
 # Survey
-if tabs == 'Survey':    
+elif tabs == 'Survey':    
   st.text('Can you help us improve in salary prediction?')
   if st.button('Yes, I will'):
     # User Survey
@@ -130,14 +112,29 @@ if tabs == 'Survey':
                       , width=640, height=2543, scrolling=False)
 
 # Contributors
-elif tabs == 'Contributors':
-        st.title('Contributors')
-        st.text("""
-        This app was developed by:
+else tabs == 'About':
+  st.title('Contributors')
+  st.text("""This app was developed by:
+  """)
+  st.write('- Abhishek John Masih (https://github.com/ajmasih0309)')
+  st.write('- Victor Oguche (https://github.com/RoyalVee)')
+  st.write('- Opeyemi Sereki (https://github.com/chocolatebunny-0)')
+  st.write('- Life Popoola (https://github.com/lifepopkay)')
+  st.write('- Ovie Iboyitie (https://github.com/OvieIboyitie)')
+  st.info('This Application was developed in #DSRoom challenge under the mentorship of Samson Afolabi (https://twitter.com/samsonafo)')
+          # Overview
+  st.title('Salary Prediction')
+  st.write("""This is a Salary Prediction Application.
+  It gives you expected salary that can be asked from recruiter/company based on Country, Total Experience, Highest Qualification and few more factors. """)
+  st.warning('NOTE: This Application will only give you a possible salary range. In reality the salary can vary because of external factors which are not considered here.')
+  st.subheader("How To Use The Application")
+  st.write("""
+        1. Input Information by using dropdown list and +/- buttons for experience.
+        2. Once all the Information is entered click on Predict Salary.
+        3. You will be returned the predicted value of Salary.
+        4. If you want to make a new prediction repeat step 1 & 2.
         """)
-        st.write('- Abhishek John Masih (https://github.com/ajmasih0309)')
-        st.write('- Victor Oguche (https://github.com/RoyalVee)')
-        st.write('- Opeyemi Sereki (https://github.com/chocolatebunny-0)')
-        st.write('- Life Popoola (https://github.com/lifepopkay)')
-        st.write('- Ovie Iboyitie (https://github.com/OvieIboyitie)')
-        st.info('This Application was developed in #DSRoom challenge under the mentorship of Samson Afolabi (https://twitter.com/samsonafo)')
+  st.subheader('Help Us Improve')
+  st.info("""
+        Kindly participate in survey & help us improve the model for Salary Prediction.
+        """)
