@@ -104,7 +104,7 @@ if tabs == 'Salary Prediction':
     st.success(f'Expected Salary between **{cs}{salary[0]:,.0f}** and **{cs}{salary[1]:,.0f}** annually.')
 
 # Survey
-elif tabs == 'Survey':    
+if tabs == 'Survey':    
   st.text('Can you help us improve in salary prediction?')
   if st.button('Yes, I will'):
     # User Survey
@@ -112,7 +112,7 @@ elif tabs == 'Survey':
                       , width=640, height=2543, scrolling=False)
 
 # Contributors
-else tabs == 'About':
+if tabs == 'About':
   st.title('Contributors')
   st.text("""This app was developed by:
   """)
