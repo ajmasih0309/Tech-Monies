@@ -10,18 +10,16 @@ from st_on_hover_tabs import on_hover_tabs
 st.set_page_config(layout="wide")
 
 # Loading model
-model = pickle.load(open('secondmodel.pkl','rb'))
+model = pickle.load(open('model3.pkl','rb'))
 
 # Loading features
 feature_dict = pickle.load(open('features.pkl','rb'))
 
 # Loading scaler
-scalerX = pickle.load(open('scalerX.pkl','rb'))
-scalerY = pickle.load(open('scalerY.pkl','rb'))
+# scalerX = pickle.load(open('scalerX.pkl','rb'))
+# scalerY = pickle.load(open('scalerY.pkl','rb'))
 
 # Exchange Rate
-
-
 # Currency Convertor
 class RealTimeCurrencyConverter():
   def __init__(self,url):
@@ -95,9 +93,9 @@ if tabs == 'Salary Prediction':
         dataset.append(0)
     df = pd.DataFrame(dataset)
     df = df.T.values
-    scaledDF = scalerX.transform(df)
-    prediction = model.predict(scaledDF)
-    prediction = scalerY.inverse_transform(prediction)
+    # scaledDF = scalerX.transform(df)
+    prediction = model.predict(df)
+    # prediction = scalerY.inverse_transform(prediction)
     salary = prediction.flatten().tolist()
     min_Salary = converter.convert('USD', cc, salary[0])
     max_Salary = converter.convert('USD', cc, salary[1])
