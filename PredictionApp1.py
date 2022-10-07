@@ -10,18 +10,19 @@ from st_on_hover_tabs import on_hover_tabs
 st.set_page_config(layout="wide")
 
 # Loading model
-model = pickle.load(open('secondmodel.pkl','rb'))
+# model1 = pickle.load(open('model31.pkl','rb'))
+# model2 = pickle.load(open('model32.pkl','rb'))
+model3 = pickle.load(open('Lasso Model for UK.pkl', 'rb'))
+model4 = pickle.load(open('Lasso Model for US NIG and IND.pkl', 'rb'))
 
 # Loading features
 feature_dict = pickle.load(open('features.pkl','rb'))
 
 # Loading scaler
-scalerX = pickle.load(open('scalerX.pkl','rb'))
-scalerY = pickle.load(open('scalerY.pkl','rb'))
+# scalerX = pickle.load(open('scalerX.pkl','rb'))
+# scalerY = pickle.load(open('scalerY.pkl','rb'))
 
 # Exchange Rate
-
-
 # Currency Convertor
 class RealTimeCurrencyConverter():
   def __init__(self,url):
@@ -95,9 +96,12 @@ if tabs == 'Salary Prediction':
         dataset.append(0)
     df = pd.DataFrame(dataset)
     df = df.T.values
-    scaledDF = scalerX.transform(df)
-    prediction = model.predict(scaledDF)
-    prediction = scalerY.inverse_transform(prediction)
+    # scaledDF = scalerX.transform(df)
+    if feature_dict[cols[1]][country] != 2:
+      prediction = model4.predict(df)
+    else:
+      prediction = model3.predict(df)
+    # prediction = scalerY.inverse_transform(prediction)
     salary = prediction.flatten().tolist()
     min_Salary = salary[0] # converter.convert('USD', cc, salary[0])
     max_Salary = salary[1] # converter.convert('USD', cc, salary[1])
