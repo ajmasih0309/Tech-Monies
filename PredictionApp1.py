@@ -99,8 +99,8 @@ if tabs == 'Salary Prediction':
     prediction = model.predict(scaledDF)
     prediction = scalerY.inverse_transform(prediction)
     salary = prediction.flatten().tolist()
-    min_Salary = converter.convert('USD', cc, salary[0])
-    max_Salary = converter.convert('USD', cc, salary[1])
+    min_Salary = salary[0] # converter.convert('USD', cc, salary[0])
+    max_Salary = salary[1] # converter.convert('USD', cc, salary[1])
     st.success(f'Expected Salary between **{cs}{salary[0]:,.0f}** and **{cs}{salary[1]:,.0f}** annually.')
 
 # Survey
