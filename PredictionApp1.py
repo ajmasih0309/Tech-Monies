@@ -93,7 +93,7 @@ if tabs == 'Salary Prediction':
       1 if feature_dict[cols[0]][jobTitle] == 'Web Developer' else 0,
       1 if feature_dict[cols[0]][country] == 'UK' else 0,
       1 if feature_dict[cols[0]][country] == 'USA' else 0,
-      1 if feature_dict[cols[0]][position] == 'Mid-Level'' else 0,
+      1 if feature_dict[cols[0]][position] == 'Mid-Level' else 0,
       1 if feature_dict[cols[0]][position] == 'Senior Level' else 0,
       1 if feature_dict[cols[0]][contract] == 'Full-time' else 0,
       1 if feature_dict[cols[0]][eligibility] == 'high school diploma' else 0,
