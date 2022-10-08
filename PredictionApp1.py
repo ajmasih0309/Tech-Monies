@@ -74,7 +74,7 @@ if tabs == 'Salary Prediction':
   yearExp = st.number_input('Enter Total Experience (Years):', min_value=1, max_value=25, value=1)
   contract = st.selectbox('Select Job Type', list(feature_dict[cols[4]].keys()))
   eligibility = st.selectbox('Select highest education', list(feature_dict[cols[5]].keys()))
-  skills = st.multiselect('Select one or more skills', cols[6:])
+  # skills = st.multiselect('Select one or more skills', cols[6:])
   
   # Salary conversion
   country_index = feature_dict[cols[1]][country]
@@ -86,18 +86,19 @@ if tabs == 'Salary Prediction':
   # Prediction & output
   if st.button('Predict Salary'):
     dataset = [
-      feature_dict[cols[0]][jobTitle],
-      feature_dict[cols[1]][country],
-      feature_dict[cols[2]][position],
       yearExp,
-      feature_dict[cols[4]][contract],
-      feature_dict[cols[5]][eligibility]
+      1 if feature_dict[cols[0]][jobTitle] == 1 else 0,
+      1 if feature_dict[cols[0]][jobTitle] == 2 else 0,
+      1 if feature_dict[cols[0]][jobTitle] == 3 else 0,
+      1 if feature_dict[cols[0]][jobTitle] == 4 else 0,
+      1 if feature_dict[cols[0]][country] == 2 else 0,
+      1 if feature_dict[cols[0]][country] == 3 else 0,
+      1 if feature_dict[cols[0]][position] == 1 else 0,
+      1 if feature_dict[cols[0]][position] == 2 else 0,
+      1 if feature_dict[cols[0]][contract] == 1 else 0,
+      1 if feature_dict[cols[0]][eligibility] == 1 else 0,
+      1 if feature_dict[cols[0]][eligibility] == 2 else 0
       ]
-    for i in cols[6:]:
-      if feature_dict[i] in skills:
-        dataset.append(1)
-      else:
-        dataset.append(0)
     df = pd.DataFrame(dataset)
     df = df.T.values
     prediction = model.predict(df)
