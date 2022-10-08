@@ -12,11 +12,14 @@ st.set_page_config(layout="wide")
 # Loading model
 # model1 = pickle.load(open('model31.pkl','rb'))
 # model2 = pickle.load(open('model32.pkl','rb'))
-model3 = pickle.load(open('Lasso Model for UK.pkl', 'rb'))
-model4 = pickle.load(open('Lasso Model for US NIG and IND.pkl', 'rb'))
+# model3 = pickle.load(open('Lasso Model for UK.pkl', 'rb'))
+# model4 = pickle.load(open('Lasso Model for US NIG and IND.pkl', 'rb'))
+model = pickle.load(open('Updated Lasso Model for UK_IND_US.pkl', 'rb'))
 
 # Loading features
 feature_dict = pickle.load(open('features.pkl','rb'))
+# removing Nigeria
+del feature_dict['Country'][1]
 
 # Loading scaler
 # scalerX = pickle.load(open('scalerX.pkl','rb'))
@@ -96,11 +99,12 @@ if tabs == 'Salary Prediction':
         dataset.append(0)
     df = pd.DataFrame(dataset)
     df = df.T.values
+    prediction = model.predict(df)
     # scaledDF = scalerX.transform(df)
-    if feature_dict[cols[1]][country] != 2:
-      prediction = model4.predict(df)
-    else:
-      prediction = model3.predict(df)
+    # if feature_dict[cols[1]][country] != 2:
+    #  prediction = model4.predict(df)
+    # else:
+    #  prediction = model3.predict(df)
     # prediction = scalerY.inverse_transform(prediction)
     salary = prediction.flatten().tolist()
     min_Salary = salary[0] # converter.convert('USD', cc, salary[0])
