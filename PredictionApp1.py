@@ -87,17 +87,18 @@ if tabs == 'Salary Prediction':
   if st.button('Predict Salary'):
     dataset = [
       yearExp,
-      1 if feature_dict[cols[0]][jobTitle] == 1 else 0,
-      1 if feature_dict[cols[0]][jobTitle] == 2 else 0,
-      1 if feature_dict[cols[0]][jobTitle] == 3 else 0,
-      1 if feature_dict[cols[0]][jobTitle] == 4 else 0,
-      1 if feature_dict[cols[0]][country] == 2 else 0,
-      1 if feature_dict[cols[0]][country] == 3 else 0,
-      1 if feature_dict[cols[0]][position] == 1 else 0,
-      1 if feature_dict[cols[0]][position] == 2 else 0,
-      1 if feature_dict[cols[0]][contract] == 1 else 0,
-      1 if feature_dict[cols[0]][eligibility] == 1 else 0,
-      1 if feature_dict[cols[0]][eligibility] == 2 else 0
+      1 if feature_dict[cols[0]][jobTitle] == 'Data Analyst' else 0,
+      1 if feature_dict[cols[0]][jobTitle] == 'Data Scientist' else 0,
+      1 if feature_dict[cols[0]][jobTitle] == 'Machine Learning Engineer' else 0,
+      1 if feature_dict[cols[0]][jobTitle] == 'Web Developer' else 0,
+      1 if feature_dict[cols[0]][country] == 'UK' else 0,
+      1 if feature_dict[cols[0]][country] == 'USA' else 0,
+      1 if feature_dict[cols[0]][position] == 'Mid-Level'' else 0,
+      1 if feature_dict[cols[0]][position] == 'Senior Level' else 0,
+      1 if feature_dict[cols[0]][contract] == 'Full-time' else 0,
+      1 if feature_dict[cols[0]][eligibility] == 'high school diploma' else 0,
+      1 if feature_dict[cols[0]][eligibility] == 'postgraduate' else 0,
+      1 if feature_dict[cols[0]][eligibility] == 'undergraduate' else 0
       ]
     df = pd.DataFrame(dataset)
     df = df.T.values
