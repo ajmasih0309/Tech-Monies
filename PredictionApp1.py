@@ -19,7 +19,7 @@ model = pickle.load(open('Updated Lasso Model for UK_IND_US.pkl', 'rb'))
 # Loading features
 feature_dict = pickle.load(open('features.pkl','rb'))
 # removing Nigeria
-del feature_dict['Country']['1']
+feature_dict['Country'].pop(1)
 
 # Loading scaler
 # scalerX = pickle.load(open('scalerX.pkl','rb'))
