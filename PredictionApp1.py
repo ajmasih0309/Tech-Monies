@@ -87,18 +87,18 @@ if tabs == 'Salary Prediction':
   if st.button('Predict Salary'):
     dataset = [
       yearExp,
-      1 jobTitle == 'Data Analyst' else 0,
-      1 jobTitle == 'Data Scientist' else 0,
-      1 jobTitle == 'Machine Learning Engineer' else 0,
-      1 jobTitle == 'Web Developer' else 0,
-      1 country == 'UK' else 0,
-      1 country == 'USA' else 0,
-      1 position == 'Mid-Level' else 0,
-      1 position == 'Senior Level' else 0,
-      1 contract == 'Full-time' else 0,
-      1 eligibility == 'high school diploma' else 0,
-      1 eligibility == 'postgraduate' else 0,
-      1 eligibility == 'undergraduate' else 0
+      1 if jobTitle == 'Data Analyst' else 0,
+      1 if jobTitle == 'Data Scientist' else 0,
+      1 if jobTitle == 'Machine Learning Engineer' else 0,
+      1 if jobTitle == 'Web Developer' else 0,
+      1 if country == 'UK' else 0,
+      1 if country == 'USA' else 0,
+      1 if position == 'Mid-Level' else 0,
+      1 if position == 'Senior Level' else 0,
+      1 if contract == 'Full-time' else 0,
+      1 if eligibility == 'high school diploma' else 0,
+      1 if eligibility == 'postgraduate' else 0,
+      1 if eligibility == 'undergraduate' else 0
       ]
     df = pd.DataFrame(dataset)
     df = df.T.values
